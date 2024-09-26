@@ -5,7 +5,7 @@ public class BinarySearchTest {
     public static void main(String[] args) {
 
         SecureRandom oRand = new SecureRandom();
-        String[] asStrings = new String[10];
+        String[] asWords = new String[10];
         int iTargetIndex; // what we want
         String sTargetString;
         int iResultIndex; // what is actual
@@ -14,12 +14,21 @@ public class BinarySearchTest {
         long elapsedTime;
 
         // hard code a string into each element
-
+        asWords[0] = "Frank";
+        asWords[1] = "Mary";
+        asWords[2] = "Jane";
+        asWords[3] = "Bob";
+        asWords[4] = "Jack";
+        asWords[5] = "Smith";
+        asWords[6] = "John";
+        asWords[7] = "Jane";
+        asWords[8] = "Smith";
+        asWords[9] = "Jack";
         // Built in class to sort our data so that binary search can be applied
-        Arrays.sort(asStrings);
+        Arrays.sort(asWords);
         // Get a target number and its index to test the binary search methods accuracy
-        iTargetIndex = oRand.nextInt(asStrings.length);
-        sTargetString = asStrings[iTargetIndex];
+        iTargetIndex = oRand.nextInt(asWords.length);
+        sTargetString = asWords[iTargetIndex];
 
         System.out.println("Target Index: " + iTargetIndex);
 
@@ -27,47 +36,47 @@ public class BinarySearchTest {
         System.out.println("BEGIN Binary Search");
 //        System.currentTimeMillis();
         startTime = System.nanoTime();
-        iResultIndex = oTest.findNumberBinarySearch(asStrings, sTargetString, asStrings.length - 1,0);
+        iResultIndex = oTest.findNumberBinarySearch(asWords, sTargetString, asWords.length - 1,0);
         System.out.println("Index returned: " + iResultIndex);
         elapsedTime = System.nanoTime() - startTime;
         System.out.println("Elapsed Time: " + elapsedTime);
         System.out.println();
 
         // Linear Search
-        System.out.println("BEGIN Linear Search");
-//        System.currentTimeMillis();
-        startTime = System.nanoTime();
-        iResultIndex = oTest.findNumberLinearSearch(asStrings, sTargetString);
-        System.out.println("Index returned: " + iResultIndex);
-        elapsedTime = System.nanoTime() - startTime;
-        System.out.println("Elapsed Time: " + elapsedTime);
+//        System.out.println("BEGIN Linear Search");
+////        System.currentTimeMillis();
+//        startTime = System.nanoTime();
+//        iResultIndex = oTest.findNumberLinearSearch(asWords, sTargetString);
+//        System.out.println("Index returned: " + iResultIndex);
+//        elapsedTime = System.nanoTime() - startTime;
+//        System.out.println("Elapsed Time: " + elapsedTime);
 
     }
 
     /**
      *  Find index of given target num using Binary Search and Recursion
-     * @param aiNumbers
+     * @param asStrings
      * @param sTargetString
      * @param iHigh
      * @param iLow
      * @return
      */
-    private int findNumberBinarySearch(String[] aiNumbers, String sTargetString, int iHigh, int iLow) {
+    private int findNumberBinarySearch(String[] asStrings, String sTargetString, int iHigh, int iLow) {
         // figure out the middle index or average
         int iMiddle = (iHigh + iLow) / 2;
         // check if num at middle index matches target
-        if (aiNumbers[iMiddle].equals(sTargetString)) {
+        if (asStrings[iMiddle].equals(sTargetString)) {
             return iMiddle;
         }
 
         // Check if the target number is greater than the value at the middle index
-        else if (sTargetString.compareTo(aiNumbers[iMiddle]) > 0) {
-            return findNumberBinarySearch(aiNumbers, sTargetString, iHigh, iMiddle + 1);
+        else if (sTargetString.compareTo(asStrings[iMiddle]) > 0) {
+            return findNumberBinarySearch(asStrings, sTargetString, iHigh, iMiddle + 1);
         }
 
         // Target num is at lower index than middle index
         else {
-            return findNumberBinarySearch(aiNumbers, sTargetString, iMiddle - 1, iLow);
+            return findNumberBinarySearch(asStrings, sTargetString, iMiddle - 1, iLow);
         }
 
     }
