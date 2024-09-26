@@ -56,12 +56,12 @@ public class BinarySearchTest {
         // figure out the middle index or average
         int iMiddle = (iHigh + iLow) / 2;
         // check if num at middle index matches target
-        if (aiNumbers[iMiddle] == sTargetString) {
+        if (aiNumbers[iMiddle].equals(sTargetString)) {
             return iMiddle;
         }
 
         // Check if the target number is greater than the value at the middle index
-        else if (sTargetString > aiNumbers[iMiddle]) {
+        else if (sTargetString.compareTo(aiNumbers[iMiddle]) > 0) {
             return findNumberBinarySearch(aiNumbers, sTargetString, iHigh, iMiddle + 1);
         }
 
@@ -72,20 +72,20 @@ public class BinarySearchTest {
 
     }
 
-    /**
-     * Find index of given target num using Linear Search
-     * @param aiNumbers
-     * @param iTargetNum
-     * @return
-     */
-    private int findNumberLinearSearch(int[] aiNumbers, int iTargetNum) {
-
-        for (int x = 0; x < aiNumbers.length; x++) {
-            if (aiNumbers[x] == iTargetNum) {
-                return x;
-            }
-        }
-        return -1;
-    }
+//    /**
+//     * Find index of given target num using Linear Search
+//     * @param aiNumbers
+//     * @param iTargetNum
+//     * @return
+//     */
+//    private int findNumberLinearSearch(int[] aiNumbers, int iTargetNum) {
+//
+//        for (int x = 0; x < aiNumbers.length; x++) {
+//            if (aiNumbers[x] == iTargetNum) {
+//                return x;
+//            }
+//        }
+//        return -1;
+//    }
 
 }
