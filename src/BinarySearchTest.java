@@ -5,23 +5,21 @@ public class BinarySearchTest {
     public static void main(String[] args) {
 
         SecureRandom oRand = new SecureRandom();
-        int[] aiNumbers = new int[10000000];
+        String[] asStrings = new String[10];
         int iTargetIndex; // what we want
-        int iTargetNum;
+        String sTargetString;
         int iResultIndex; // what is actual
         BinarySearchTest oTest = new BinarySearchTest();
         long startTime;
         long elapsedTime;
 
-        // for loop to put random numbers in array
-        for (int x = 0; x < aiNumbers.length; x++) {
-            aiNumbers[x] = oRand.nextInt(100);
-        }
+        // hard code a string into each element
+
         // Built in class to sort our data so that binary search can be applied
-        Arrays.sort(aiNumbers);
+        Arrays.sort(asStrings);
         // Get a target number and its index to test the binary search methods accuracy
-        iTargetIndex = oRand.nextInt(aiNumbers.length);
-        iTargetNum = aiNumbers[iTargetIndex];
+        iTargetIndex = oRand.nextInt(asStrings.length);
+        sTargetString = asStrings[iTargetIndex];
 
         System.out.println("Target Index: " + iTargetIndex);
 
@@ -29,7 +27,7 @@ public class BinarySearchTest {
         System.out.println("BEGIN Binary Search");
 //        System.currentTimeMillis();
         startTime = System.nanoTime();
-        iResultIndex = oTest.findNumberBinarySearch(aiNumbers, iTargetNum, aiNumbers.length - 1,0);
+        iResultIndex = oTest.findNumberBinarySearch(asStrings, sTargetString, asStrings.length - 1,0);
         System.out.println("Index returned: " + iResultIndex);
         elapsedTime = System.nanoTime() - startTime;
         System.out.println("Elapsed Time: " + elapsedTime);
@@ -39,7 +37,7 @@ public class BinarySearchTest {
         System.out.println("BEGIN Linear Search");
 //        System.currentTimeMillis();
         startTime = System.nanoTime();
-        iResultIndex = oTest.findNumberLinearSearch(aiNumbers, iTargetNum);
+        iResultIndex = oTest.findNumberLinearSearch(asStrings, sTargetString);
         System.out.println("Index returned: " + iResultIndex);
         elapsedTime = System.nanoTime() - startTime;
         System.out.println("Elapsed Time: " + elapsedTime);
@@ -49,27 +47,27 @@ public class BinarySearchTest {
     /**
      *  Find index of given target num using Binary Search and Recursion
      * @param aiNumbers
-     * @param iTargetNum
+     * @param sTargetString
      * @param iHigh
      * @param iLow
      * @return
      */
-    private int findNumberBinarySearch(int[] aiNumbers, int iTargetNum, int iHigh, int iLow) {
+    private int findNumberBinarySearch(String[] aiNumbers, String sTargetString, int iHigh, int iLow) {
         // figure out the middle index or average
         int iMiddle = (iHigh + iLow) / 2;
         // check if num at middle index matches target
-        if (aiNumbers[iMiddle] == iTargetNum) {
+        if (aiNumbers[iMiddle] == sTargetString) {
             return iMiddle;
         }
 
         // Check if the target number is greater than the value at the middle index
-        else if (iTargetNum > aiNumbers[iMiddle]) {
-            return findNumberBinarySearch(aiNumbers, iTargetNum, iHigh, iMiddle + 1);
+        else if (sTargetString > aiNumbers[iMiddle]) {
+            return findNumberBinarySearch(aiNumbers, sTargetString, iHigh, iMiddle + 1);
         }
 
         // Target num is at lower index than middle index
         else {
-            return findNumberBinarySearch(aiNumbers, iTargetNum, iMiddle - 1, iLow);
+            return findNumberBinarySearch(aiNumbers, sTargetString, iMiddle - 1, iLow);
         }
 
     }
